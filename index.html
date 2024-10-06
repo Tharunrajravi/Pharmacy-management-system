@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Management System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file here -->
+    <style>
+        /* Particle Background Styles */
+        .particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Places the particles behind other content */
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            animation: move 10s infinite;
+        }
+
+        /* Keyframes for Particle Movement */
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(100px, 100px);
+            }
+            50% {
+                transform: translate(-100px, 200px);
+            }
+            75% {
+                transform: translate(200px, 50px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        /* Menu Styles */
+        .menu {
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: none; /* Hide forms initially */
+            margin-top: 20px;
+        }
+
+        .form-container.active {
+            display: block; /* Show active form */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particle-background"></div>
+    
+    <h1>Welcome to the Pharmacy Management System</h1>
+    
+    <!-- Menu for selecting options -->
+    <div class="menu">
+        <button onclick="showForm('add')">Add Medicine</button>
+        <button onclick="showForm('sell')">Sell Medicine</button>
+    </div>
+
+    <!-- Form to add new medicines -->
+    <div id="add-medicine" class="form-container">
+        <form action="add_medicine.php" method="POST">
+            <h2>Add Medicine</h2>
+            <input type="text" name="name" placeholder="Medicine Name" required>
+            <input type="text" name="category" placeholder="Category">
+            <input type="number" name="quantity" placeholder="Quantity" required>
+            <input type="number" step="0.01" name="price" placeholder="Price" required>
+            <input type="date" name="expiration_date" placeholder="Expiration Date" required>
+            <button type="submit">Add Medicine</button>
+        </form>
+    </div>
+
+    <!-- Form to sell medicines -->
+    <div id="sell-medicine" class="form-container">
+        <form action="sell_medicine.php" method="POST">
+            <h2>Sell Medicine</h2>
+            <input type="text" name="customer_name" placeholder="Customer Name" required>
+            <input type="text" name="contact" placeholder="Contact Number" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="medicine_name" placeholder="Medicine Name" required>
+            <input type="number" name="quantity_sold" placeholder="Quantity Sold" required>
+            <button type="submit">Sell Medicine</button>
+        </form>
+    </div>
+
+    <!-- Buttons to view stock and sales -->
+    <div class="actions">
+        <center>
+            <button onclick="location.href='view_stock.php';">View Stock Levels</button>
+            <button onclick="location.href='view_sales.php';">View Sales</button>
+        </center>
+    </div>
+
+    <script>
+        // Particle Generation Logic
+        const particleBackground = document.querySelector('.particle-background');
+
+        for (let i = 0; i < 50; i++) { // Generate 50 particles
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = particle.style.width; // Maintain circular shape
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particleBackground.appendChild(particle);
+        }
+
+        // Function to show the selected form
+        function showForm(formType) {
+            // Hide all forms
+            document.querySelectorAll('.form-container').forEach(form => {
+                form.classList.remove('active');
+            });
+
+            // Show the selected form
+            if (formType === 'add') {
+                document.getElementById('add-medicine').classList.add('active');
+            } else if (formType === 'sell') {
+                document.getElementById('sell-medicine').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    background-size:cover;
+    
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Heading Styles */
+h1 {
+    color: White;
+}
+
+/* Form Container Styles */
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Input and Button Styles */
+input, button {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Main Button Styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 0.3s, transform 0.2s;
+}
+
+/* Hover Effect for Button */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Glowing Animation */
+button:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 4px;
+}
+
+button:hover:before {
+    opacity: 1;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Keyframes for Glowing Animation */
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+/* Actions Section */
+.actions {
+    margin-top: 20px;
+}
+
+/* Action Buttons Styles */
+.actions button {
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+}
+.center-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Adjust as needed to center vertically */
+    margin-top: 20px;
+}
